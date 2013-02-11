@@ -623,6 +623,7 @@ previously validated pair.
 An agent MUST restart ICE for a media stream if:
 </t>
 
+<t>
 <list style="symbols">
 <t>The offer is being generated
 for the purposes of changing the target of the media stream. In other
@@ -638,6 +639,7 @@ has changed the target of media mid-session to another entity that has
 a different ICE implementation.
 </t>
 </list>
+</t>
 
 <t>These rules imply that setting the IP address in the c line to
 0.0.0.0 will cause an ICE restart. Consequently, ICE implementations
@@ -1425,6 +1427,7 @@ registration information is reproduced here.</t>
 
 <section title="candidate Attribute">
 
+<t>
 <list style="hanging">
 
 <t hangText="Contact Name:"> Jonathan Rosenberg, jdrosen@jdrosen.net.
@@ -1450,11 +1453,13 @@ Utilities for NAT (STUN).
 RFC 5245 . </t>
 
 </list>
+</t>
 
 </section>
 
 <section title="remote-candidates Attribute">
 
+<t>
 <list style="hanging">
 
 <t hangText="Contact Name:"> Jonathan Rosenberg, jdrosen@jdrosen.net.
@@ -1479,11 +1484,13 @@ answer.
 RFC 5245. </t>
 
 </list>
+</t>
 
 </section>
 
 <section title="ice-lite Attribute">
 
+<t>
 <list style="hanging">
 
 <t hangText="Contact Name:"> Jonathan Rosenberg, jdrosen@jdrosen.net.
@@ -1508,11 +1515,13 @@ peer that has a full implementation.
 RFC 5245.</t>
 
 </list>
+</t>
 
 </section>
 
 <section title="ice-mismatch Attribute">
 
+<t>
 <list style="hanging">
 
 <t hangText="Contact Name:"> Jonathan Rosenberg, jdrosen@jdrosen.net.
@@ -1537,11 +1546,13 @@ with the default destination for media signaled in the SDP.
 RFC 5245.</t>
 
 </list>
+</t>
 
 </section>
 
 <section title="ice-pwd Attribute">
 
+<t>
 <list style="hanging">
 
 <t hangText="Contact Name:"> Jonathan Rosenberg, jdrosen@jdrosen.net.
@@ -1565,11 +1576,13 @@ protect STUN connectivity checks.
 RFC 5245. </t>
 
 </list>
+</t>
 
 </section>
 
 <section title="ice-ufrag Attribute">
 
+<t>
 <list style="hanging">
 
 <t hangText="Contact Name:"> Jonathan Rosenberg, jdrosen@jdrosen.net.
@@ -1593,11 +1606,13 @@ construct the username in STUN connectivity checks.
 RFC 5245. </t>
 
 </list>
+</t>
 
 </section>
 
 <section title="ice-options Attribute">
 
+<t>
 <list style="hanging">
 
 <t hangText="Contact Name:"> Jonathan Rosenberg, jdrosen@jdrosen.net.
@@ -1621,6 +1636,7 @@ extensions used by the agent.
 RFC 5245.</t>
 
 </list>
+</t>
 
 </section>
 
