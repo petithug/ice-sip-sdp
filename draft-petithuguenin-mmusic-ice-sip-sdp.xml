@@ -60,6 +60,8 @@
   <t> This document describes how Interactive Connectivity
   Establishment (ICE) is used with Session Description Protocol (SDP)
   offer/answer and Session Initiation Protocol (SIP). </t>
+  
+  <t>  Note that ICE is not intended for NAT traversal for SIP, which is assumed to be provided via another mechanism <xref target="RFC5626"/>. </t>
 
 </section>
 
@@ -1662,6 +1664,8 @@ RFC 5245.</t>
 
   <?rfc include="reference.RFC.3960"?>
   <?rfc include="reference.RFC.4340"?>
+  <?rfc include="reference.RFC.5626"?>
+
 <?rfc include="reference.RFC.5898"?>
 
 </references>
