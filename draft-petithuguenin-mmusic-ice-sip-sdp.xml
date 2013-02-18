@@ -37,6 +37,10 @@
 
 		<date day="17" month="February" year="2013" />
 
+		<area>RAI</area>
+
+		<workgroup>MMUSIC</workgroup>
+
 		<abstract>
 			<t>This document describes how Interactive Connectivity Establishment (ICE) is used with Session Description Protocol (SDP) offer/answer and Session Initiation Protocol (SIP).</t>
 		</abstract>
@@ -51,7 +55,7 @@
 		<section title="Terminology">
 			<t> The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 <xref target="RFC2119"/>.</t>
 
-			<t>This document uses the terms defined in [ice-bis] and the following:</t>
+			<t>This document uses the terms defined in <xref target="ICE-BIS" /> and the following:</t>
 
 			<t>
 				<list style="hanging">
@@ -147,14 +151,14 @@
 
 				<t>
 					Once an agent has sent its offer or its answer, that agent MUST be prepared to receive both STUN and media packets on each candidate.
-					As discussed in Section [sec-send-media of ICE-bis], media packets can be sent to a candidate prior to its appearance as the default destination for media in an offer or answer.
+					As discussed in Section <!--sec-send-media --> 10.1 of <xref target="ICE-BIS" />, media packets can be sent to a candidate prior to its appearance as the default destination for media in an offer or answer.
 				</t>
 			</section>
 		</section>
 
 		<section title="Receiving the Initial Offer">
 			<section title="Choosing Default Candidates">
-				<t>The process for selecting default candidates at the answerer is identical to the process followed by the offerer, as described in <xref target="sec-inuse"/> for full implementations and [sec-offer-lite of ICE-bis] for lite implementations.</t>
+				<t>The process for selecting default candidates at the answerer is identical to the process followed by the offerer, as described in <xref target="sec-inuse"/> for full implementations and <!-- sec-offer-lite --> 4.2 of <xref target="ICE-BIS" /> for lite implementations.</t>
 			</section>
 
 			<section anchor="sec-verify" title="Verifying ICE Support">
@@ -168,7 +172,7 @@
 
 				<t>
 					<list style="numbers">
-						<t> The agent MUST follow the rules of [keepalive section of ICE-bis], which describe keepalive procedures for all agents.</t>
+						<t> The agent MUST follow the rules of section <!-- keepalive --> 9 of <xref target="ICE-BIS" />, which describe keepalive procedures for all agents.</t>
 
 						<t>If the agent is not proceeding with ICE because there were a=candidate attributes, but none that matched the default destination of the media stream, the agent MUST include an a=ice-mismatch attribute in its answer.</t>
 
@@ -189,12 +193,12 @@
 			</t>
 
 			<section anchor="sec-overify" title="Verifying ICE Support">
-				<t>The logic at the offerer is identical to that of the answerer as described in [sec-verify of ICE-bis], with the exception that an offerer would not ever generate a=ice-mismatch attributes in an SDP.</t>
+				<t>The logic at the offerer is identical to that of the answerer as described in section 5.1 <!--sec-verify--> of <xref target="ICE-BIS" />, with the exception that an offerer would not ever generate a=ice-mismatch attributes in an SDP.</t>
 
 				<t>
 					In some cases, the answer may omit a=candidate attributes for the media streams, and instead include an a=ice-mismatch attribute for one or more of the media streams in the SDP.
 					This signals to the offerer that the answerer supports ICE, but that ICE processing was not used for the session because a signaling intermediary modified the default destination for media components without modifying the corresponding candidate attributes.
-					See [sec-security of ICE-bis] for a discussion of cases where this can happen.
+					See section <!-- sec-security--> 15 of <xref target="ICE-BIS" /> for a discussion of cases where this can happen.
 					This specification provides no guidance on how an agent should proceed in such a failure case.
 				</t>
 			</section>
@@ -667,7 +671,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 						In this case, both would have sent updated offers around the same time.
 						However, the signaling protocol carrying the offer/answer exchanges will have resolved this glare condition, so that one agent is always the 'winner' by having its offer received before its peer has sent an offer.
 						The winner takes the role of controlled, so that the loser (the answerer under consideration in this section) MUST change its role to controlled.
-						Consequently, if the agent was going to send an updated offer since, based on the rules in [sec-lite-conc2 of ICE-bis], it was controlling, it no longer needs to.
+						Consequently, if the agent was going to send an updated offer since, based on the rules in section <!--sec-lite-conc2--> 8.2 of <xref target="ICE-BIS" />, it was controlling, it no longer needs to.
 					</t>
 
 					<t>Besides the potential role change, change in the Valid list, and state changes, the construction of the answer is performed identically to the construction of an offer as described in <xref target="sec-sub-lite"/>.</t>
@@ -680,12 +684,12 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 						<t>
 							The agent MUST remember the highest-priority nominated pairs in the Valid list for each component of the media stream, called the previous selected pairs, prior to the restart.
 							The agent will continue to send media using these pairs, as described in <xref target="sec-send-media"/>.
-							Once these destinations are noted, the agent MUST flush the valid and check lists, and then recompute the check list and its states as described in [sec-forming of ICE-bis].
+							Once these destinations are noted, the agent MUST flush the valid and check lists, and then recompute the check list and its states as described in section <!--sec-forming--> 6.3 of <xref target="ICE-BIS" />.
 						</t>
 					</section>
 
 					<section title="New Media Stream">
-						<t>If the offer/answer exchange added a new media stream, the agent MUST create a new check list for it (and an empty Valid list to start of course), as described in [sec-forming of ICE-bis].</t>
+						<t>If the offer/answer exchange added a new media stream, the agent MUST create a new check list for it (and an empty Valid list to start of course), as described in section <!--sec-forming--> 6.3 of <xref target="ICE-BIS" />.</t>
 					</section>
 
 					<section title="Removed Media Stream">
@@ -702,7 +706,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 
 						<t>
 							If an agent is in the Running state for that media stream, the check list is updated (the check list is irrelevant if the state is completed).
-							To do that, the agent recomputes the check list using the procedures described in [sec-forming of ICE-bis].
+							To do that, the agent recomputes the check list using the procedures described in section <!--sec-forming--> 6.3 of <xref target="ICE-BIS" />.
 							If a pair on the new check list was also on the previous check list, and its state was Waiting, In-Progress, Succeeded, or Failed, its state is copied over.
 							Otherwise, its state is set to Frozen.
 						</t>
@@ -726,6 +730,13 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 				</section>
 			</section> <!-- Updating Check and Valid Lists -->
 		</section> <!-- subsequent -->
+
+		<section anchor="sec-keepalive" title="Keepalives">
+			<t>
+				The keepalives MUST be sent regardless of whether the media stream is currently inactive, sendonly, recvonly, or sendrecv, and regardless of the presence or value of the bandwidth attribute.
+				An agent can determine that its peer supports ICE by the presence of a=candidate attributes for each media session.
+			</t>
+		</section>
 
 		<section title="Media Handling">
 			<section anchor="sec-send-media" title="Sending Media">
@@ -990,7 +1001,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 		</section>
 
 		<section title="Acknowledgments">
-			<t>Thanks folks!</t>
+			<t>A large part of the text in this document was taken from RFC 5245, authored by Jonathan Rosenberg.</t>
 		</section>
 	</middle>
 
@@ -1009,6 +1020,34 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 			<?rfc include="reference.RFC.5234"?>
 			<?rfc include="reference.RFC.5389"?>
 			<?rfc include="reference.RFC.5768"?>
+			<reference anchor="ICE-BIS">
+				<front>
+					<title>Interactive Connectivity Establishment (ICE): A Protocol for Network Address Translator (NAT) Traversal for Offer/Answer Protocols</title>
+
+					<author initials="A" surname="Keranen" fullname="Ari Keranen">
+						<organization/>
+					</author>
+
+					<author initials="J" surname="Rosenberg" fullname="Jonathan Rosenberg">
+						<organization/>
+					</author>
+
+					<date month="February" day="18" year="2013"/>
+
+					<abstract>
+						<t>
+							This document describes a protocol for Network Address Translator (NAT) traversal for UDP-based multimedia sessions established with the offer/answer model.
+							This protocol is called Interactive Connectivity Establishment (ICE).
+							ICE makes use of the Session Traversal Utilities for NAT (STUN) protocol and its extension, Traversal Using Relay NAT (TURN).
+							ICE can be used by any protocol utilizing the offer/answer model, such as the Session Initiation Protocol (SIP).
+						</t>
+					</abstract>
+				</front>
+
+				<seriesInfo name="Internet-Draft" value="draft-keranen-mmusic-rfc5245bis-00"/>
+
+				<format type="TXT" target="http://www.ietf.org/internet-drafts/draft-keranen-mmusic-rfc5245bis-00.txt"/>
+			</reference>
 		</references>
 
 		<references title="Informative References">
