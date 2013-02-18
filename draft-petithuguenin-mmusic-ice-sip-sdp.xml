@@ -131,20 +131,20 @@
 				<figure>
 					<artwork>
 <![CDATA[
-	v=0
-	o=jdoe 2890844526 2890842807 IN IP4 10.0.1.1
-	s=
-	c=IN IP4 192.0.2.3
-	t=0 0
-	a=ice-pwd:asd88fgpdd777uzjYhagZg
-	a=ice-ufrag:8hhY
-	m=audio 45664 RTP/AVP 0
-	b=RS:0
-	b=RR:0
-	a=rtpmap:0 PCMU/8000
-	a=candidate:1 1 UDP 2130706431 10.0.1.1 8998 typ host
-	a=candidate:2 1 UDP 1694498815 192.0.2.3 45664 typ srflx raddr
-10.0.1.1 rport 8998
+      v=0
+      o=jdoe 2890844526 2890842807 IN IP4 10.0.1.1
+      s=
+      c=IN IP4 192.0.2.3
+      t=0 0
+      a=ice-pwd:asd88fgpdd777uzjYhagZg
+      a=ice-ufrag:8hhY
+      m=audio 45664 RTP/AVP 0
+      b=RS:0
+      b=RR:0
+      a=rtpmap:0 PCMU/8000
+      a=candidate:1 1 UDP 2130706431 10.0.1.1 8998 typ host
+      a=candidate:2 1 UDP 1694498815 192.0.2.3 45664 typ srflx raddr
+      10.0.1.1 rport 8998
 ]]>
 					</artwork>
 				</figure>
@@ -242,15 +242,15 @@
 					<artwork>
 <![CDATA[
 candidate-attribute   = "candidate" ":" foundation SP component-id SP
-						transport SP
-						priority SP
-						connection-address SP     ;from RFC 4566
-						port         ;port from RFC 4566
-						SP cand-type
-						[SP rel-addr]
-						[SP rel-port]
-						*(SP extension-att-name SP
-							 extension-att-value)
+                        transport SP
+                        priority SP
+                        connection-address SP     ;from RFC 4566
+                        port         ;port from RFC 4566
+                        SP cand-type
+                        [SP rel-addr]
+                        [SP rel-port]
+                        *(SP extension-att-name SP
+                             extension-att-value)
 
 foundation            = 1*32ice-char
 component-id          = 1*5DIGIT
@@ -299,7 +299,11 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 							</t>
 
 							<t hangText="&lt;component-id&gt;:">
-								TODO: defined in ICE-bis?
+								is a positive integer between 1 and 256 that identifies the specific component of the media stream for which this is a candidate.
+								It MUST start at 1 and MUST increment by 1 for each component of a particular candidate.
+								For media streams based on RTP, candidates for the actual RTP media MUST have a component ID of 1, and candidates for RTCP MUST have a component ID of 2.
+								Other types of media streams that require multiple components MUST develop specifications that define the mapping of components to component IDs.
+								See section <!--sec-futureproof--> 11 in <xref target="ICE-BIS" /> for additional discussion on extending ICE to new media streams.
 							</t>
 
 							<t hangText="&lt;priority&gt;:">
@@ -313,7 +317,11 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 							</t>
 
 							<t hangText="&lt;rel-addr&gt; and &lt;rel-port&gt;:">
-								TODO: defined in ICE-bis?
+								convey transport addresses related to the candidate, useful for diagnostics and other purposes.
+								&lt;rel-addr&gt; and &lt;rel-port&gt; MUST be present for server reflexive, peer reflexive, and relayed candidates.
+								If a candidate is server or peer reflexive, &lt;rel-addr&gt; and &lt;rel-port&gt; are equal to the base for that server or peer reflexive candidate.
+								If the candidate is relayed, &lt;rel-addr&gt; and &lt;rel-port&gt; is equal to the mapped address in the Allocate response that provided the client with that relayed candidate (see section <!--sec-translation--> Appendix B.3 of <xref target="ICE-BIS" /> for a discussion of its purpose).
+								If the candidate is a host candidate, &lt;rel-addr&gt; and &lt;rel-port&gt; MUST be omitted.
 							</t>
 					</list>
 				</t>
@@ -333,11 +341,11 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 
 				<figure>
 					<artwork>
-	<![CDATA[
-	remote-candidate-att = "remote-candidates" ":" remote-candidate
-							0*(SP remote-candidate)
-	remote-candidate = component-ID SP connection-address SP port
-	]]>
+<![CDATA[
+remote-candidate-att = "remote-candidates" ":" remote-candidate
+                         0*(SP remote-candidate)
+remote-candidate = component-ID SP connection-address SP port
+]]>
 					</artwork>
 				</figure>
 
@@ -354,10 +362,10 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 
 				<figure>
 					<artwork>
-	<![CDATA[
-	ice-lite               = "ice-lite"
-	ice-mismatch           = "ice-mismatch"
-	]]>
+<![CDATA[
+ice-lite               = "ice-lite"
+ice-mismatch           = "ice-mismatch"
+]]>
 					</artwork>
 				</figure>
 
@@ -372,12 +380,12 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 
 				<figure>
 					<artwork>
-	<![CDATA[
-	ice-pwd-att           = "ice-pwd" ":" password
-	ice-ufrag-att         = "ice-ufrag" ":" ufrag
-	password              = 22*256ice-char
-	ufrag                 = 4*256ice-char
-	]]>
+<![CDATA[
+ice-pwd-att           = "ice-pwd" ":" password
+ice-ufrag-att         = "ice-ufrag" ":" ufrag
+password              = 22*256ice-char
+ufrag                 = 4*256ice-char
+]]>
 					</artwork>
 				</figure>
 
@@ -408,11 +416,11 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 
 				<figure>
 					<artwork>
-	<![CDATA[
-	ice-options           = "ice-options" ":" ice-option-tag
-							  0*(SP ice-option-tag)
-	ice-option-tag        = 1*ice-char
-	]]>
+<![CDATA[
+ice-options           = "ice-options" ":" ice-option-tag
+                          0*(SP ice-option-tag)
+ice-option-tag        = 1*ice-char
+]]>
 					</artwork>
 				</figure>
 			</section>
@@ -746,6 +754,31 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 					However, until that updated offer arrives, there will not be a match.
 					Furthermore, in very unusual cases, the default candidates in the updated offer/answer will not be a match.
 				</t>
+
+				<section title="Procedures for All Implementations">
+					<t>
+						ICE has interactions with jitter buffer adaptation mechanisms.
+						An RTP stream can begin using one candidate, and switch to another one, though this happens rarely with ICE.
+						The newer candidate may result in RTP packets taking a different path through the network -- one with different delay characteristics.
+						As discussed below, agents are encouraged to re-adjust jitter buffers when there are changes in source or destination address of media packets.
+						Furthermore, many audio codecs use the marker bit to signal the beginning of a talkspurt, for the purposes of jitter buffer adaptation.
+						For such codecs, it is RECOMMENDED that the sender set the marker bit <xref target="RFC3550" /> when an agent switches transmission of media from one candidate pair to another.
+					</t>
+				</section>
+			</section>
+
+			<section title="Receiving Media">
+				<t>ICE implementations MUST be prepared to receive media on each component on any candidates provided for that component in the most recent offer/answer exchange (in the case of RTP, this would include both RTP and RTCP if candidates were provided for both).</t>
+
+				<t>It is RECOMMENDED that, when an agent receives an RTP packet with a new source or destination IP address for a particular media stream, that the agent re-adjust its jitter buffers.</t>
+
+				<t>
+					<xref target="RFC3550">RFC 3550</xref> describes an algorithm in Section 8.2 for detecting synchronization source (SSRC) collisions and loops.
+					These algorithms are based, in part, on seeing different source transport addresses with the same SSRC.
+					However, when ICE is used, such changes will sometimes occur as the media streams switch between candidates.
+					An agent will be able to determine that a media stream is from the same peer as a consequence of the STUN exchange that proceeds media transmission.
+					Thus, if there is a change in source transport address, but the media packets come from the same peer agent, this SHOULD NOT be treated as an SSRC collision.
+				</t>
 			</section>
 		</section>
 
@@ -885,8 +918,175 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 			<t>This specification deprecates RFC 4091 and RFC 4092. Instead, agents wishing to support dual-stack will utilize ICE.</t>
 		</section>
 
+		<section title="Setting Ta and RTO for RTP Media Streams">
+			<t>
+				During the gathering phase of ICE (section <!--sec-gathering--> 4.1.1 <xref target="ICE-BIS"/>) and while ICE is performing connectivity checks (section <!--sec-connectivity_check--> 7 <xref target="ICE-BIS"/>), an agent sends STUN and TURN transactions.
+				These transactions are paced at a rate of one every Ta milliseconds, and utilize a specific RTO.  This section describes how the values of Ta and RTO are computed with a real-time media stream (such as RTP).
+				When ICE is used for a stream with a known maximum bandwidth, the following computation MAY be followed to rate-control the ICE exchanges.
+			</t>
+
+			<t>
+				The values of RTO and Ta change during the lifetime of ICE processing.
+				One set of values applies during the gathering phase, and the other, for connectivity checks.
+			</t>
+
+			<t>The value of Ta SHOULD be configurable, and SHOULD have a default of:</t>
+
+			<figure>
+				<artwork>
+<![CDATA[
+
+For each media stream i:
+ Ta_i = (stun_packet_size / rtp_packet_size) * rtp_ptime
+
+                        1
+  Ta = MAX (20ms, ------------------- )
+                        k
+                      ----
+                      \        1
+                       >    ------
+                      /       Ta_i
+                      ----
+                       i=1
+
+]]>
+				</artwork>
+			</figure>
+
+			<t>
+				where k is the number of media streams.
+				During the gathering phase, Ta is computed based on the number of media streams the agent has indicated in its offer or answer, and the RTP packet size and RTP ptime are those of the most preferred codec for each media stream.
+				Once an offer and answer have been exchanged, the agent recomputes Ta to pace the connectivity checks.
+				In that case, the value of Ta is based on the number of media streams that will actually be used in the session, and the RTP packet size and RTP ptime are those of the most preferred codec with which the agent will send.
+			</t>
+
+			<t>In addition, the retransmission timer for the STUN transactions, RTO, defined in <xref target="RFC5389"/>, SHOULD be configurable and during the gathering phase, SHOULD have a default of:</t>
+
+			<figure>
+				<artwork>
+<![CDATA[
+  RTO = MAX (100ms, Ta * (number of pairs))
+]]>
+				</artwork>
+			</figure>
+
+			<t>where the number of pairs refers to the number of pairs of candidates with STUN or TURN servers.</t>
+
+			<t>For connectivity checks, RTO SHOULD be configurable and SHOULD have a default of:</t>
+
+			<figure>
+				<artwork>
+<![CDATA[
+  RTO = MAX (100ms, Ta*N * (Num-Waiting + Num-In-Progress))
+]]>
+				</artwork>
+			</figure>
+
+			<t>
+				where Num-Waiting is the number of checks in the check list in the Waiting state, and Num-In-Progress is the number of checks in the In-Progress state.
+				Note that the RTO will be different for each transaction as the number of checks in the Waiting and In-Progress states change.
+			</t>
+
+			<t>
+				These formulas are aimed at causing STUN transactions to be paced at the same rate as media.
+				This ensures that ICE will work properly under the same network conditions needed to support the media as well.
+				See section <!-- sec-pacing --> B.1 of <xref target="ICE-BIS"/> for additional discussion and motivations.
+				Because of this pacing, it will take a certain amount of time to obtain all of the server reflexive and relayed candidates.
+				Implementations should be aware of the time required to do this, and if the application requires a time budget, limit the number of candidates that are gathered.
+			</t>
+
+			<t>
+				The formulas result in a behavior whereby an agent will send its first packet for every single connectivity check before performing a retransmit.
+				This can be seen in the formulas for the RTO (which represents the retransmit interval).
+				Those formulas scale with N, the number of checks to be performed.
+				As a result of this, ICE maintains a nicely constant rate, but becomes more sensitive to packet loss.
+				The loss of the first single packet for any connectivity check is likely to cause that pair to take a long time to be validated, and instead, a lower-priority check (but one for which there was no packet loss) is much more likely to complete first.
+				This results in ICE performing sub-optimally, choosing lower-priority pairs over higher-priority pairs.
+				Implementors should be aware of this consequence, but still should utilize the timer values described here.
+			</t>
+		</section>
+
 		<section title="Security Considerations">
-			<t>Security is important.</t>
+			<section title="Attacks on the Offer/Answer Exchanges">
+				<t>
+					An attacker that can modify or disrupt the offer/answer exchanges themselves can readily launch a variety of attacks with ICE.
+					They could direct media to a target of a DoS attack, they could insert themselves into the media stream, and so on.
+					These are similar to the general security considerations for offer/answer exchanges, and the security considerations in RFC 3264 <xref target="RFC3264"/> apply.
+					These require techniques for message integrity and encryption for offers and answers, which are satisfied by the SIPS mechanism <xref target="RFC3261"/> when SIP is used.
+					As such, the usage of SIPS with ICE is RECOMMENDED.
+				</t>
+			</section>
+
+			<section title="Insider Attacks">
+				<t>In addition to attacks where the attacker is a third party trying to insert fake offers, answers, or stun messages, there are several attacks possible with ICE when the attacker is an authenticated and valid participant in the ICE exchange.</t>
+
+				<section anchor="sec-voice-hammer" title="The Voice Hammer Attack">
+					<t>
+						The voice hammer attack is an amplification attack.
+						In this attack, the attacker initiates sessions to other agents, and maliciously includes the IP address and port of a DoS target as the destination for media traffic signaled in the SDP.
+						This causes substantial amplification; a single offer/answer exchange can create a continuing flood of media packets, possibly at high rates (consider video sources).
+						This attack is not specific to ICE, but ICE can help provide remediation.
+					</t>
+
+					<t>
+						Specifically, if ICE is used, the agent receiving the malicious SDP will first perform connectivity checks to the target of media before sending media there.
+						If this target is a third-party host, the checks will not succeed, and media is never sent.
+					</t>
+
+					<t>
+						Unfortunately, ICE doesn't help if its not used, in which case an attacker could simply send the offer without the ICE parameters.
+						However, in environments where the set of clients is known, and is limited to ones that support ICE, the server can reject any offers or answers that don't indicate ICE support.
+					</t>
+				</section>
+
+				<section title="Interactions with Application Layer Gateways and SIP">
+					<t>
+						Application Layer Gateways (ALGs) are functions present in a NAT device that inspect the contents of packets and modify them, in order to facilitate NAT traversal for application protocols.
+						Session Border Controllers (SBCs) are close cousins of ALGs, but are less transparent since they actually exist as application layer SIP intermediaries.
+						ICE has interactions with SBCs and ALGs.
+					</t>
+
+					<t>
+						If an ALG is SIP aware but not ICE aware, ICE will work through it as long as the ALG correctly modifies the SDP.
+						A correct ALG implementation behaves as follows:
+					</t>
+
+					<t>
+						<list style="symbols">
+							<t>The ALG does not modify the m and c lines or the rtcp attribute if they contain external addresses.</t>
+							<t>If the m and c lines contain internal addresses, the modification depends on the state of the ALG:
+								<list style="empty">
+									<t>If the ALG already has a binding established that maps an external port to an internal IP address and port matching the values in the m and c lines or rtcp attribute, the ALG uses that binding instead of creating a new one.</t>
+									<t>If the ALG does not already have a binding, it creates a new one and modifies the SDP, rewriting the m and c lines and rtcp attribute.</t>
+								</list>
+							</t>
+						</list>
+					</t>
+
+					<t>
+						Unfortunately, many ALGs are known to work poorly in these corner cases.
+						ICE does not try to work around broken ALGs, as this is outside the scope of its functionality.
+						ICE can help diagnose these conditions, which often show up as a mismatch between the set of candidates and the m and c lines and rtcp attributes.
+						The ice-mismatch attribute is used for this purpose.
+					</t>
+
+					<t>
+						ICE works best through ALGs when the signaling is run over TLS.
+						This prevents the ALG from manipulating the SDP messages and interfering with ICE operation.
+						Implementations that are expected to be deployed behind ALGs SHOULD provide for TLS transport of the SDP.
+					</t>
+
+					<t>
+						If an SBC is SIP aware but not ICE aware, the result depends on the behavior of the SBC.
+						If it is acting as a proper Back-to-Back User Agent (B2BUA), the SBC will remove any SDP attributes it doesn't understand, including the ICE attributes.
+						Consequently, the call will appear to both endpoints as if the other side doesn't support ICE.
+						This will result in ICE being disabled, and media flowing through the SBC, if the SBC has requested it.
+						If, however, the SBC passes the ICE attributes without modification, yet modifies the default destination for media (contained in the m and c lines and rtcp attribute), this will be detected as an ICE mismatch, and ICE processing is aborted for the call.
+						It is outside of the scope of ICE for it to act as a tool for "working around" SBCs.
+						If one is present, ICE will not be used and the SBC techniques take precedence.
+					</t>
+				</section>
+			</section>
 		</section>
 
 		<section anchor="iana" title="IANA Considerations">
@@ -1029,9 +1229,11 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 	<back>
 		<references title="Normative References">
 			<?rfc include="reference.RFC.2119"?>
+			<?rfc include="reference.RFC.3261"?>
 			<?rfc include="reference.RFC.3262"?>
 			<?rfc include="reference.RFC.3264"?>
 			<?rfc include="reference.RFC.3312"?>
+			<?rfc include="reference.RFC.3550"?>
 			<?rfc include="reference.RFC.3556"?>
 			<?rfc include="reference.RFC.3605"?>
 			<?rfc include="reference.RFC.4032"?>
