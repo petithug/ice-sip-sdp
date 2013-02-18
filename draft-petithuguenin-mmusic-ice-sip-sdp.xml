@@ -399,7 +399,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 				</t>
 			</section>
 
-			<section title="&quot;ice-options&quot; Attribute">
+			<section anchor="sec-ice-options" title="&quot;ice-options&quot; Attribute">
 				<t>
 					The "ice-options" attribute is a session-level attribute.
 					It contains a series of tokens that identify the options supported by the agent.
@@ -908,7 +908,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 								This attribute is used with Interactive Connectivity Establishment (ICE), and provides one of many possible candidate addresses for communication.
 								These addresses are validated with an end-to-end connectivity check using Session Traversal Utilities for NAT (STUN).
 							</t>
-							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC 5245.</t>
+							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC XXXX.</t>
 						</list>
 					</t>
 				</section>
@@ -922,7 +922,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 							<t hangText="Type of Attribute:">media-level</t>
 							<t hangText="Charset Considerations:">The attribute is not subject to the charset attribute.</t>
 							<t hangText="Purpose:">This attribute is used with Interactive Connectivity Establishment (ICE), and provides the identity of the remote candidates that the offerer wishes the answerer to use in its answer.</t>
-							<t hangText="Appropriate Values:"> See <xref target="sec-grammar"/> of RFC 5245.</t>
+							<t hangText="Appropriate Values:"> See <xref target="sec-grammar"/> of RFC XXXX.</t>
 						</list>
 					</t>
 				</section>
@@ -936,7 +936,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 							<t hangText="Type of Attribute:">session-level</t>
 							<t hangText="Charset Considerations:">The attribute is not subject to the charset attribute.</t>
 							<t hangText="Purpose:">This attribute is used with Interactive Connectivity Establishment (ICE), and indicates that an agent has the minimum functionality required to support ICE inter-operation with a peer that has a full implementation.</t>
-							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC 5245.</t>
+							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC XXXX.</t>
 						</list>
 					</t>
 				</section>
@@ -950,7 +950,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 							<t hangText="Type of Attribute:">session-level</t>
 							<t hangText="Charset Considerations:">The attribute is not subject to the charset attribute.</t>
 							<t hangText="Purpose:">This attribute is used with Interactive Connectivity Establishment (ICE), and indicates that an agent is ICE capable, but did not proceed with ICE due to a mismatch of candidates with the default destination for media signaled in the SDP.</t>
-							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC 5245.</t>
+							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC XXXX.</t>
 						</list>
 					</t>
 				</section>
@@ -964,7 +964,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 							<t hangText="Type of Attribute:">session- or media-level</t>
 							<t hangText="Charset Considerations:">The attribute is not subject to the charset attribute.</t>
 							<t hangText="Purpose:">This attribute is used with Interactive Connectivity Establishment (ICE), and provides the password used to protect STUN connectivity checks.</t>
-							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC 5245.</t>
+							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC XXXX.</t>
 						</list>
 					</t>
 				</section>
@@ -978,7 +978,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 							<t hangText="Type of Attribute:">session- or media-level </t>
 							<t hangText="Charset Considerations:">The attribute is not subject to the charset attribute.</t>
 							<t hangText="Purpose:">This attribute is used with Interactive Connectivity Establishment (ICE), and provides the fragments used to construct the username in STUN connectivity checks.</t>
-							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC 5245.</t>
+							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC XXXX.</t>
 						</list>
 					</t>
 
@@ -993,15 +993,36 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 							<t hangText="Type of Attribute:">session-level</t>
 							<t hangText="Charset Considerations:">The attribute is not subject to the charset attribute.</t>
 							<t hangText="Purpose:">This attribute is used with Interactive Connectivity Establishment (ICE), and indicates the ICE options or extensions used by the agent.</t>
-							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC 5245.</t>
+							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC XXXX.</t>
 						</list>
 					</t>
 				</section>
+			</section>
+
+			<section title="Interactive Connectivity Establishment (ICE) Options Registry">
+				<t>IANA maintains a registry for ice-options identifiers under the Specification Required policy as defined in <xref target="RFC5226">"Guidelines for Writing an IANA Considerations Section in RFCs"</xref>.</t>
+
+				<t>
+					ICE options are of unlimited length according to the syntax in <xref target="sec-ice-options" />; however, they are RECOMMENDED to be no longer than 20 characters.
+					This is to reduce message sizes and allow for efficient parsing.
+				</t>
+
+				<t>
+					A registration request MUST include the following information:
+					<list style="symbols">
+						<t>The ICE option identifier to be registered</t>
+						<t>Name, Email, and Address of a contact person for the registration</t>
+						<t>Organization or individuals having the change control</t>
+						<t>Short description of the ICE extension to which the option relates</t>
+						<t>Reference(s) to the specification defining the ICE option and the related extensions</t>
+					</list>
+				</t>
 			</section>
 		</section>
 
 		<section title="Acknowledgments">
 			<t>A large part of the text in this document was taken from RFC 5245, authored by Jonathan Rosenberg.</t>
+			<t>Some of the text in this document was taken from RFC 6336, authored by Magnus Westerlund and Colin Perkins.</t>
 		</section>
 	</middle>
 
@@ -1017,6 +1038,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"
 			<?rfc include="reference.RFC.4091"?>
 			<?rfc include="reference.RFC.4092"?>
 			<?rfc include="reference.RFC.4566"?>
+			<?rfc include="reference.RFC.5226"?>
 			<?rfc include="reference.RFC.5234"?>
 			<?rfc include="reference.RFC.5389"?>
 			<?rfc include="reference.RFC.5768"?>
