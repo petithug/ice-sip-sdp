@@ -1386,6 +1386,25 @@ For each media stream i:
 				However, the conflict resolution procedures allow for this case, should a flow arise that would fit into this category.
 			</t>
 		</section>
+
+		<section title="Why Send an Updated Offer?">
+			<t>
+				<xref target="sec-send-media"/> describes rules for sending media.
+				Both agents can send media once ICE checks complete, without waiting for an updated offer.
+				Indeed, the only purpose of the updated offer is to "correct" the SDP so that the default destination for media matches where media is being sent based on ICE procedures (which will be the highest-priority nominated candidate pair).
+			</t>
+
+			<t>
+				This begs the question -- why is the updated offer/answer exchange needed at all?
+				Indeed, in a pure offer/answer environment, it would not be.
+				The offerer and answerer will agree on the candidates to use through ICE, and then can begin using them.
+				As far as the agents themselves are concerned, the updated offer/answer provides no new information.
+				However, in practice, numerous components along the signaling path look at the SDP information.
+				These include entities performing off-path QoS reservations, NAT traversal components such as ALGs and Session Border Controllers (SBCs), and diagnostic tools that passively monitor the network.
+				For these tools to continue to function without change, the core property of SDP -- that the existing, pre-ICE definitions of the addresses used for media -- the m and c lines and the rtcp attribute -- must be retained.
+				For this reason, an updated offer must be sent.
+			</t>
+		</section>
 	</back>
 </rfc>
 
