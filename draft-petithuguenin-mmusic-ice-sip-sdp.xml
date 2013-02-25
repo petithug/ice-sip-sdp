@@ -48,9 +48,17 @@
 
 	<middle>
 		<section anchor="intro" title="Introduction">
-		  <t> [NOTE: this version of the document shows merely which parts of the original ICE document could be split to a separate document if the split of SDP is accepted by the WG. Later versions will define the additional procedures needed] </t>
-		  <t> This document describes how Interactive Connectivity Establishment (ICE) is used with Session Description Protocol (SDP) offer/answer and Session Initiation Protocol (SIP). The ICE specification <xref target="ICE-BIS"/> describes procedures that are common to all usages of ICE and this document gives the additional details needed to use ICE with SIP and SDP offer/answer. </t>
-		  <t>Note that ICE is not intended for NAT traversal for SIP, which is assumed to be provided via another mechanism <xref target="RFC5626"/>.</t>
+			<t>
+				[NOTE: this version of the document shows merely which parts of the original ICE document could be split to a separate document if the split of SDP is accepted by the WG.
+				Later versions will define the additional procedures needed]
+			</t>
+
+			<t>
+				This document describes how Interactive Connectivity Establishment (ICE) is used with Session Description Protocol (SDP) offer/answer and Session Initiation Protocol (SIP).
+				The ICE specification <xref target="ICE-BIS"/> describes procedures that are common to all usages of ICE and this document gives the additional details needed to use ICE with SIP and SDP offer/answer.
+			</t>
+
+			<t>Note that ICE is not intended for NAT traversal for SIP, which is assumed to be provided via another mechanism <xref target="RFC5626"/>.</t>
 		</section>
 
 		<section title="Terminology">
@@ -211,7 +219,6 @@
 
 		<section anchor="sec-connectivity_check" title="Performing Connectivity Checks">
 		  <t> The possibility for role conflicts described in <!-- "Detecting and Repairing Role Conflicts" --> Section 7.2.1.1 of <xref target="ICE-BIS"/> applies to this usage and hence all full agents MUST implement the role conflict repairing mechanism. Also both full and lite agents MUST utilize the ICE-CONTROLLED and ICE-CONTROLLING attributes as described in <!-- ICE-CONTROLLED and ICE-CONTROLLING --> Section 7.1.2.2 of <xref target="ICE-BIS"/>. </t>
-
 		</section>
 
 		<section anchor="sec-conclude" title="Concluding ICE">
@@ -1334,24 +1341,18 @@ For each media stream i:
 			</figure>
 		</section>
 
-<section anchor="sec-glare" title="Why Is the Conflict Resolution
-				   Mechanism Needed?"> 
+		<section anchor="sec-glare" title="Why Is the Conflict Resolution Mechanism Needed?">
+			<t>
+				When ICE runs between two peers, one agent acts as controlled, and the other as controlling.
+				Rules are defined as a function of implementation type and offerer/answerer to determine who is controlling and who is controlled.
+				However, the specification mentions that, in some cases, both sides might believe they are controlling, or both sides might believe they are controlled.
+				How can this happen?
+			</t>
 
-<t>
-When ICE runs between two peers, one agent acts as controlled, and the
-other as controlling. Rules are defined as a function of
-implementation type and offerer/answerer to determine who is
-controlling and who is controlled. However, the specification mentions
-that, in some cases, both sides might believe they are controlling, or
-both sides might believe they are controlled. How can this happen?
-</t>
+			<t>The condition when both agents believe they are controlled shows up in third party call control cases. Consider the following flow:</t>
 
-<t>
-The condition when both agents believe they are controlled shows up in
-third party call control cases. Consider the following flow:
-</t>
-
-<figure title="Role Conflict Flow" anchor="fig-conflict"><artwork>
+			<figure title="Role Conflict Flow" anchor="fig-conflict">
+				<artwork>
 <![CDATA[
           A         Controller          B
           |(1) INV()     |              |
@@ -1367,30 +1368,25 @@ third party call control cases. Consider the following flow:
           |              |(6) ACK(SDP1) |
           |              |------------->|
 
-]]></artwork></figure>
+]]>
+				</artwork>
+			</figure>
 
-<t>
-This flow is a variation on flow III of RFC 3725 <xref
-target="RFC3725"/>. In fact, it works better than flow III since it
-produces fewer messages. In this flow, the controller sends an
-offerless INVITE to agent A, which responds with its offer, SDP1. The
-agent then sends an offerless INVITE to agent B, which it responds to
-with its offer, SDP2. The controller then uses the offer from each
-agent to generate the answers. When this flow is used, ICE will run
-between agents A and B, but both will believe they are in the
-controlling role. With the role conflict resolution procedures, this
-flow will function properly when ICE is used.
-</t>
+			<t>
+				This flow is a variation on flow III of RFC 3725 <xref target="RFC3725"/>.
+				In fact, it works better than flow III since it produces fewer messages.
+				In this flow, the controller sends an offerless INVITE to agent A, which responds with its offer, SDP1.
+				The agent then sends an offerless INVITE to agent B, which it responds to with its offer, SDP2.
+				The controller then uses the offer from each agent to generate the answers.
+				When this flow is used, ICE will run between agents A and B, but both will believe they are in the controlling role.
+				With the role conflict resolution procedures, this flow will function properly when ICE is used.
+			</t>
 
-<t>
-At this time, there are no documented flows that can result in the
-case where both agents believe they are controlled. However, the
-conflict resolution procedures allow for this case, should a flow
-arise that would fit into this category.
-</t>
-
-</section>
-
+			<t>
+				At this time, there are no documented flows that can result in the case where both agents believe they are controlled.
+				However, the conflict resolution procedures allow for this case, should a flow arise that would fit into this category.
+			</t>
+		</section>
 	</back>
 </rfc>
 
