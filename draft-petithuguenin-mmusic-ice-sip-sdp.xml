@@ -1272,7 +1272,7 @@ For each media stream i:
 						<organization/>
 					</author>
 
-					<date month="February" day="18" year="2013"/>
+					<date month="February" day="25" year="2013"/>
 
 					<abstract>
 						<t>
@@ -1284,9 +1284,9 @@ For each media stream i:
 					</abstract>
 				</front>
 
-				<seriesInfo name="Internet-Draft" value="draft-keranen-mmusic-rfc5245bis-00"/>
+				<seriesInfo name="Internet-Draft" value="draft-keranen-mmusic-rfc5245bis-01"/>
 
-				<format type="TXT" target="http://www.ietf.org/internet-drafts/draft-keranen-mmusic-rfc5245bis-00.txt"/>
+				<format type="TXT" target="http://www.ietf.org/internet-drafts/draft-keranen-mmusic-rfc5245bis-01.txt"/>
 			</reference>
 		</references>
 
@@ -1297,6 +1297,89 @@ For each media stream i:
 			<?rfc include="reference.RFC.5626"?>
 			<?rfc include="reference.RFC.5898"?>
 		</references>
+
+		<section anchor="sec-example" title="Examples">
+			<t>For the example shown in Section <!--Example--> 13 of <xref target="ICE-BIS" /> the resulting offer (message 5) encoded in SDP looks like:</t>
+
+			<figure>
+				<artwork>
+<![CDATA[v=0
+o=jdoe 2890844526 2890842807 IN IP4 $L-PRIV-1.IP
+s=
+c=IN IP4 $NAT-PUB-1.IP
+t=0 0
+a=ice-pwd:asd88fgpdd777uzjYhagZg
+a=ice-ufrag:8hhY
+m=audio $NAT-PUB-1.PORT RTP/AVP 0
+b=RS:0
+b=RR:0
+a=rtpmap:0 PCMU/8000
+a=candidate:1 1 UDP 2130706431 $L-PRIV-1.IP $L-PRIV-1.PORT typ host
+a=candidate:2 1 UDP 1694498815 $NAT-PUB-1.IP $NAT-PUB-1.PORT typ
+ srflx raddr $L-PRIV-1.IP rport $L-PRIV-1.PORT
+]]>
+				</artwork>
+			</figure>
+
+			<t>The offer, with the variables replaced with their values, will look like (lines folded for clarity):</t>
+
+			<figure>
+				<artwork>
+<![CDATA[v=0
+o=jdoe 2890844526 2890842807 IN IP4 10.0.1.1
+s=
+c=IN IP4 192.0.2.3
+t=0 0
+a=ice-pwd:asd88fgpdd777uzjYhagZg
+a=ice-ufrag:8hhY
+m=audio 45664 RTP/AVP 0
+b=RS:0
+b=RR:0
+a=rtpmap:0 PCMU/8000
+a=candidate:1 1 UDP 2130706431 10.0.1.1 8998 typ host
+a=candidate:2 1 UDP 1694498815 192.0.2.3 45664 typ srflx raddr
+ 10.0.1.1 rport 8998]]>
+				</artwork>
+			</figure>
+
+			<t>The resulting answer looks like:</t>
+
+			<figure>
+				<artwork>
+<![CDATA[v=0
+o=bob 2808844564 2808844564 IN IP4 $R-PUB-1.IP
+s=
+c=IN IP4 $R-PUB-1.IP
+t=0 0
+a=ice-pwd:YH75Fviy6338Vbrhrlp8Yh
+a=ice-ufrag:9uB6
+m=audio $R-PUB-1.PORT RTP/AVP 0
+b=RS:0
+b=RR:0
+a=rtpmap:0 PCMU/8000
+a=candidate:1 1 UDP 2130706431 $R-PUB-1.IP $R-PUB-1.PORT typ host]]>
+				</artwork>
+			</figure>
+
+			<t>With the variables filled in:</t>
+
+			<figure>
+				<artwork>
+<![CDATA[v=0
+o=bob 2808844564 2808844564 IN IP4 192.0.2.1
+s=
+c=IN IP4 192.0.2.1
+t=0 0
+a=ice-pwd:YH75Fviy6338Vbrhrlp8Yh
+a=ice-ufrag:9uB6
+m=audio 3478 RTP/AVP 0
+b=RS:0
+b=RR:0
+a=rtpmap:0 PCMU/8000
+a=candidate:1 1 UDP 2130706431 192.0.2.1 3478 typ host]]>
+				</artwork>
+			</figure>
+		</section>
 
 		<section anchor="sec-why-remote" title="The remote-candidates Attribute">
 			<t>
