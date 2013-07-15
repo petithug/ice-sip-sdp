@@ -9,7 +9,7 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 
-<rfc ipr="pre5378Trust200902" docName="draft-ietf-mmusic-ice-sip-sdp-00" category="std">
+<rfc ipr="pre5378Trust200902" docName="draft-ietf-mmusic-ice-sip-sdp-00" updates="6679" category="std">
 	<front>
 		<title abbrev="ICE SIP/SDP Usage">Using Interactive Connectivity Establishment (ICE) with Session&nbsp;Description&nbsp;Protocol (SDP) offer/answer and Session&nbsp;Initiation&nbsp;Protocol (SIP)</title>
 
@@ -414,7 +414,7 @@ ufrag                 = 4*256ice-char]]>
 
 			<section anchor="sec-ice-options" title="&quot;ice-options&quot; Attribute">
 				<t>
-					The "ice-options" attribute is a session-level attribute.
+					The "ice-options" attribute is a session- and media-level attribute.
 					It contains a series of tokens that identify the options supported by the agent.
 					Its grammar is:
 				</t>
@@ -1185,7 +1185,7 @@ ice-option-tag        = 1*ice-char]]>
 							<t hangText="Contact Name:">Jonathan Rosenberg, jdrosen@jdrosen.net.</t>
 							<t hangText="Attribute Name:">ice-options</t>
 							<t hangText="Long Form:">ice-options</t>
-							<t hangText="Type of Attribute:">session-level</t>
+							<t hangText="Type of Attribute:">session- or media-level</t>
 							<t hangText="Charset Considerations:">The attribute is not subject to the charset attribute.</t>
 							<t hangText="Purpose:">This attribute is used with Interactive Connectivity Establishment (ICE), and indicates the ICE options or extensions used by the agent.</t>
 							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC XXXX.</t>
@@ -1200,6 +1200,18 @@ ice-option-tag        = 1*ice-char]]>
 				<t>
 					ICE options are of unlimited length according to the syntax in <xref target="sec-ice-options" />; however, they are RECOMMENDED to be no longer than 20 characters.
 					This is to reduce message sizes and allow for efficient parsing.
+				</t>
+
+				<t>
+					In RFC 5245 ICE options could only be defined at the session level.
+					To permit aggregation between different ICE agents in the same endpoint, ICE options can now also be defined at the media level.
+					To ensure compatibility with legacy implementation, the media-level ICE options MUST be aggregated into a session-level ICE option.
+					Because aggregation rules depends on the specifics of each option, all new ICE options MUST also define in their specification how the media-level ICE option values are aggregated to generate the value of the session-level ICE option.
+				</t>
+
+				<t>
+					The only ICE option defined at the time of publication is <xref target="RFC6679">"rtp+ecn"</xref>.
+					The aggregation rule for this ICE options is that if all aggregated media using ICE contain a media-level "rtp+ecn" ICE option then an "rtp+ecn" ICE option MUST be inserted at the session-level.
 				</t>
 
 				<t>
@@ -1239,6 +1251,7 @@ ice-option-tag        = 1*ice-char]]>
 			<?rfc include="reference.RFC.5234"?>
 			<?rfc include="reference.RFC.5389"?>
 			<?rfc include="reference.RFC.5768"?>
+			<?rfc include="reference.RFC.6679"?>
 			<reference anchor="ICE-BIS">
 				<front>
 					<title>Interactive Connectivity Establishment (ICE): A Protocol for Network Address Translator (NAT) Traversal for Offer/Answer Protocols</title>
