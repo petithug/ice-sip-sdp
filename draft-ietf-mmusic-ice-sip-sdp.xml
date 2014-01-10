@@ -9,7 +9,7 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 
-<rfc ipr="pre5378Trust200902" docName="draft-ietf-mmusic-ice-sip-sdp-01" category="std">
+<rfc ipr="pre5378Trust200902" docName="draft-ietf-mmusic-ice-sip-sdp-02" category="std">
 	<front>
 		<title abbrev="ICE SIP/SDP Usage">Using Interactive Connectivity Establishment (ICE) with Session&nbsp;Description&nbsp;Protocol (SDP) offer/answer and Session&nbsp;Initiation&nbsp;Protocol (SIP)</title>
 
@@ -422,7 +422,7 @@ ufrag                 = 4*256ice-char]]>
 
 			<section anchor="sec-ice-options" title="&quot;ice-options&quot; Attribute">
 				<t>
-					The "ice-options" attribute is a session-level attribute.
+					The "ice-options" attribute is a session- and media-level attribute.
 					It contains a series of tokens that identify the options supported by the agent.
 					Its grammar is:
 				</t>
@@ -1193,7 +1193,7 @@ ice-option-tag        = 1*ice-char]]>
 							<t hangText="Contact Name:">Jonathan Rosenberg, jdrosen@jdrosen.net.</t>
 							<t hangText="Attribute Name:">ice-options</t>
 							<t hangText="Long Form:">ice-options</t>
-							<t hangText="Type of Attribute:">session-level</t>
+							<t hangText="Type of Attribute:">session- or media-level</t>
 							<t hangText="Charset Considerations:">The attribute is not subject to the charset attribute.</t>
 							<t hangText="Purpose:">This attribute is used with Interactive Connectivity Establishment (ICE), and indicates the ICE options or extensions used by the agent.</t>
 							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC XXXX.</t>
