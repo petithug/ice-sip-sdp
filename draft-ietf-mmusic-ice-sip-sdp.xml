@@ -9,15 +9,22 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 
-<rfc ipr="pre5378Trust200902" docName="draft-ietf-mmusic-ice-sip-sdp-00" category="std">
+<rfc ipr="pre5378Trust200902" docName="draft-ietf-mmusic-ice-sip-sdp-01" category="std">
 	<front>
 		<title abbrev="ICE SIP/SDP Usage">Using Interactive Connectivity Establishment (ICE) with Session&nbsp;Description&nbsp;Protocol (SDP) offer/answer and Session&nbsp;Initiation&nbsp;Protocol (SIP)</title>
 
 		<author initials="M." surname="Petit-Huguenin" fullname="Marc Petit-Huguenin">
-			<organization>Impedance Mismatch</organization>
+			<organization>Jive Communications</organization>
 
 			<address>
-				<email>petithug@acm.org</email>
+				<postal>
+					<street>1275 West 1600 North, Suite 100</street>
+					<city>Orem</city>
+					<region>UT</region>
+					<code>84057</code>
+					<country>USA</country>
+				</postal>
+				<email>marcph@getjive.com</email>
 			</address>
 		</author>
 
@@ -35,7 +42,7 @@
 			</address>
 		</author>
 
-		<date day="14" month="July" year="2013" />
+		<date day="10" month="January" year="2014" />
 
 		<area>RAI</area>
 
@@ -409,6 +416,7 @@ ufrag                 = 4*256ice-char]]>
 					The attributes MAY be longer than 4 and 22 characters, respectively, of course, up to 256 characters.
 					The upper limit allows for buffer sizing in implementations.
 					Its large upper limit allows for increased amounts of randomness to be added over time.
+					For compatibility with the 512 character limitation for the STUN username attribute value and for bandwidth conservation considerations, the ice-ufrag attribute MUST NOT be longer than 32 characters when sending, but an implementation  MUST accept up to 256 characters when receiving.
 				</t>
 			</section>
 
@@ -1200,6 +1208,20 @@ ice-option-tag        = 1*ice-char]]>
 				<t>
 					ICE options are of unlimited length according to the syntax in <xref target="sec-ice-options" />; however, they are RECOMMENDED to be no longer than 20 characters.
 					This is to reduce message sizes and allow for efficient parsing.
+				</t>
+
+				<t>
+					In RFC 5245 ICE options could only be defined at the session level.
+					ICE options can now also be defined at the media level.
+					This can be used when aggregating between different ICE agents in the same endpoint, but future options may require to be defined at the media-level.
+					To ensure compatibility with legacy implementation, the media-level ICE options MUST be aggregated into a session-level ICE option.
+					Because aggregation rules depend on the specifics of each option, all new ICE options MUST also define in their specification how the media-level ICE option values are aggregated to generate the value of the session-level ICE option.
+				</t>
+
+				<t>
+					The only ICE option defined at the time of publication is <xref target="RFC6679">"rtp+ecn"</xref>.
+					The aggregation rule for this ICE options is that if all aggregated media using ICE contain a media-level "rtp+ecn" ICE option then an "rtp+ecn" ICE option MUST be inserted at the session-level.
+					If one of the media does not contain the option, then it MUST NOT be inserted at the session-level.
 				</t>
 
 				<t>
