@@ -334,6 +334,8 @@ ice-char              = ALPHA / DIGIT / "+" / "/"]]>
 								If the candidate is relayed, &lt;rel-addr&gt; and &lt;rel-port&gt; is equal to the mapped address in the Allocate response that provided the client with that relayed candidate (see section <!--sec-translation--> Appendix B.3 of <xref target="ICE-BIS" /> for a discussion of its purpose).
 								If the candidate is a host candidate, &lt;rel-addr&gt; and &lt;rel-port&gt; MUST be omitted.
 							</t>
+							
+							<t> In some cases, e.g., for privacy reasons, an agent may not want to reveal the related address and port. In this case the address MUST be set to "0.0.0.0" (for IPv4 candidates) or "::" (for IPv6 candidates) and the port to zero. </t>
 					</list>
 				</t>
 
