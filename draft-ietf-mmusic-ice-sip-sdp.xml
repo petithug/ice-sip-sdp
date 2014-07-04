@@ -55,11 +55,12 @@
 
 	<middle>
 		<section anchor="intro" title="Introduction">
+<!--
 			<t>
 				[NOTE: this version of the document shows merely which parts of the original ICE document could be split to a separate document if the split of SDP is accepted by the WG.
 				Later versions will define the additional procedures needed]
 			</t>
-
+-->
 			<t>
 				This document describes how Interactive Connectivity Establishment (ICE) is used with Session Description Protocol (SDP) offer/answer and Session Initiation Protocol (SIP).
 				The ICE specification <xref target="ICE-BIS"/> describes procedures that are common to all usages of ICE and this document gives the additional details needed to use ICE with SIP and SDP offer/answer.
@@ -253,7 +254,7 @@ a=candidate:2 1 UDP 1694498815 192.0.2.3 45664 typ srflx raddr
 		</section>
 
 		<section anchor="sec-grammar" title="Grammar">
-			<t>This specification defines seven new SDP attributes -- the "candidate", "remote-candidates", "ice-lite", "ice-mismatch", "ice-ufrag", "ice-pwd", and "ice-options" attributes.</t>
+			<t>This specification defines eight new SDP attributes -- the "candidate", "remote-candidates", "ice-lite", "ice-mismatch", "ice-ufrag", "ice-pwd", "ice-pacing", and "ice-options" attributes.</t>
 
 			<section title="&quot;candidate&quot; Attribute">
 				<t>The candidate attribute is a media-level attribute only. It contains a transport address for a candidate that can be used for connectivity checks.</t>
@@ -419,6 +420,19 @@ ufrag                 = 4*256ice-char]]>
 					For compatibility with the 512 character limitation for the STUN username attribute value and for bandwidth conservation considerations, the ice-ufrag attribute MUST NOT be longer than 32 characters when sending, but an implementation  MUST accept up to 256 characters when receiving.
 				</t>
 			</section>
+
+			<section title="&quot;ice-pacing&quot; Attribute">
+				<t>The "ice-pacing" attribute indicates the desired connectivity check pacing, in milliseconds, for this agent (see Section 12.2 of <xref target="ICE-BIS"/>). The syntax is:</t>
+
+				<figure>
+					<artwork>
+<![CDATA[ice-pacing-att            = "ice-pacing" ":" pacing-value
+pacing-value              = 1*10DIGIT]]>
+					</artwork>
+				</figure>
+
+			</section>
+
 
 			<section anchor="sec-ice-options" title="&quot;ice-options&quot; Attribute">
 				<t>
@@ -1188,6 +1202,21 @@ ice-option-tag        = 1*ice-char]]>
 					</t>
 
 				</section>
+				
+				<section title="ice-pacing Attribute">
+					<t>
+						<list style="hanging">
+							<t hangText="Contact Name:">Jonathan Rosenberg, jdrosen@jdrosen.net.</t>
+							<t hangText="Attribute Name:">ice-pacing</t>
+							<t hangText="Long Form:">ice-pacing </t>
+							<t hangText="Type of Attribute:">session-level </t>
+							<t hangText="Charset Considerations:">The attribute is not subject to the charset attribute.</t>
+							<t hangText="Purpose:">This attribute is used with Interactive Connectivity Establishment (ICE) to indicate desired connectivity check pacing values.</t>
+							<t hangText="Appropriate Values:">See <xref target="sec-grammar"/> of RFC XXXX.</t>
+						</list>
+					</t>
+
+				</section>
 
 				<section title="ice-options Attribute">
 					<t>
@@ -1264,6 +1293,7 @@ ice-option-tag        = 1*ice-char]]>
 			<?rfc include="reference.RFC.5389"?>
 			<?rfc include="reference.RFC.5768"?>
 			<?rfc include="reference.RFC.6679"?>
+			
 			<reference anchor="ICE-BIS">
 				<front>
 					<title>Interactive Connectivity Establishment (ICE): A Protocol for Network Address Translator (NAT) Traversal for Offer/Answer Protocols</title>
@@ -1276,7 +1306,7 @@ ice-option-tag        = 1*ice-char]]>
 						<organization/>
 					</author>
 
-					<date month="February" day="25" year="2013"/>
+					<date month="July" day="4" year="2014"/>
 
 					<abstract>
 						<t>
@@ -1288,9 +1318,9 @@ ice-option-tag        = 1*ice-char]]>
 					</abstract>
 				</front>
 
-				<seriesInfo name="Internet-Draft" value="draft-keranen-mmusic-rfc5245bis-01"/>
+				<seriesInfo name="Internet-Draft" value="draft-keranen-mmusic-rfc5245bis-02"/>
 
-				<format type="TXT" target="http://www.ietf.org/internet-drafts/draft-keranen-mmusic-rfc5245bis-01.txt"/>
+				<format type="TXT" target="http://www.ietf.org/internet-drafts/draft-keranen-mmusic-rfc5245bis-02.txt"/>
 			</reference>
 		</references>
 
