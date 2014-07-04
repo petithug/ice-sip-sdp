@@ -9,7 +9,7 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 
-<rfc ipr="pre5378Trust200902" docName="draft-ietf-mmusic-ice-sip-sdp-02" category="std">
+<rfc ipr="pre5378Trust200902" docName="draft-ietf-mmusic-ice-sip-sdp-03" category="std">
 	<front>
 		<title abbrev="ICE SIP/SDP Usage">Using Interactive Connectivity Establishment (ICE) with Session&nbsp;Description&nbsp;Protocol (SDP) offer/answer and Session&nbsp;Initiation&nbsp;Protocol (SIP)</title>
 
@@ -282,8 +282,8 @@ cand-type             = "typ" SP candidate-types
 candidate-types       = "host" / "srflx" / "prflx" / "relay" / token
 rel-addr              = "raddr" SP connection-address
 rel-port              = "rport" SP port
-extension-att-name    = byte-string    ;from RFC 4566
-extension-att-value   = byte-string
+extension-att-name    = token
+extension-att-value   = *VCHAR
 ice-char              = ALPHA / DIGIT / "+" / "/"]]>
 					</artwork>
 				</figure>
