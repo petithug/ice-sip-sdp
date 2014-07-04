@@ -434,6 +434,8 @@ ufrag                 = 4*256ice-char]]>
 ice-option-tag        = 1*ice-char]]>
 					</artwork>
 				</figure>
+				
+				<t>The existence of an ice-option can indicate that a certain extension is supported by the agent and will be used or that the extension is used only if the other agent is willing to use it too. In order to avoid ambiguity, documents defining new options must indicate which case applies to the defined extensions. </t>
 			</section>
 		</section> <!-- end grammar -->
 
