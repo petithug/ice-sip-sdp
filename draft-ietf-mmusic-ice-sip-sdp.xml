@@ -93,7 +93,7 @@
 				</t>
 
 				<t>
-					It is RECOMMENDED that default candidates be chosen based on the likelihood of those candidates to work with the peer that is being contacted.
+					It is RECOMMENDED that default candidates be chosen based on the likelihood of those candidates to work with the peer that is being contacted if ICE is not being used.
 					It is RECOMMENDED that the default candidates are the relayed candidates (if relayed candidates are available), server reflexive candidates (if server reflexive candidates are available), and finally host candidates.
 				</t>
 			</section>
