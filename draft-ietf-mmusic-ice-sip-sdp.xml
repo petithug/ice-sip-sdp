@@ -334,7 +334,7 @@ ice-char              = ALPHA / DIGIT / "+" / "/"]]>
 								If the candidate is relayed, &lt;rel-addr&gt; and &lt;rel-port&gt; is equal to the mapped address in the Allocate response that provided the client with that relayed candidate (see section <!--sec-translation--> Appendix B.3 of <xref target="ICE-BIS" /> for a discussion of its purpose).
 								If the candidate is a host candidate, &lt;rel-addr&gt; and &lt;rel-port&gt; MUST be omitted.
 							</t>
-							
+
 							<t> In some cases, e.g., for privacy reasons, an agent may not want to reveal the related address and port. In this case the address MUST be set to "0.0.0.0" (for IPv4 candidates) or "::" (for IPv6 candidates) and the port to zero. </t>
 					</list>
 				</t>
@@ -442,7 +442,7 @@ pacing-value              = 1*10DIGIT]]>
 ice-option-tag        = 1*ice-char]]>
 					</artwork>
 				</figure>
-				
+
 				<t>The existence of an ice-option can indicate that a certain extension is supported by the agent and will be used or that the extension is used only if the other agent is willing to use it too. In order to avoid ambiguity, documents defining new options must indicate which case applies to the defined extensions. </t>
 			</section>
 		</section> <!-- end grammar -->
@@ -1196,7 +1196,7 @@ ice-option-tag        = 1*ice-char]]>
 					</t>
 
 				</section>
-				
+
 				<section title="ice-pacing Attribute">
 					<t>
 						<list style="hanging">
@@ -1287,7 +1287,7 @@ ice-option-tag        = 1*ice-char]]>
 			<?rfc include="reference.RFC.5389"?>
 			<?rfc include="reference.RFC.5768"?>
 			<?rfc include="reference.RFC.6679"?>
-			
+
 			<reference anchor="ICE-BIS">
 				<front>
 					<title>Interactive Connectivity Establishment (ICE): A Protocol for Network Address Translator (NAT) Traversal for Offer/Answer Protocols</title>
