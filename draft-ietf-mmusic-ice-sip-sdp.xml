@@ -710,18 +710,18 @@ ice-option-tag        = 1*ice-char]]>
 			<section anchor="sec-answer-subsequent" title="Receiving the Answer for a Subsequent Offer">
 				<t>
 					Some deployments of ICE include e.g. SDP-Modifying Signaling-only <xref target="RFC7092">B2BUAs</xref> that modify the SDP body during the subsequent offer/answer exchange.
-					With the B2BUA being ICE-unaware a subsequent answer might be manipulated and might not include SDP candidates although the initial answer did.
+					With the B2BUA being ICE-unaware a subsequent answer might be manipulated and might not include ICE candidates although the initial answer did.
 				</t>
 
 				<t>
 					An example of a situation where such an "unexpected" answer might be experienced appears when such a B2BUA introduces a media server during call hold using 3rd party call-control procedures.
 					Omitting further details how this is done this could result in an answer being received at the holding UA that was constructed by the B2BUA.
-					With the B2BUA being ICE-unaware that answer would not include SDP candidates.
+					With the B2BUA being ICE-unaware that answer would not include ICE candidates.
 				</t>
 
 				<t>Receiving an answer without ICE attributes in this situation might be unexpected, but would not necessarily impair the user experience.</t>
 
-				<t>In addition to procedures for the expected answer, the following sections give also some advices on how to recover from the unexpected situation.</t>
+				<t>In addition to procedures for the expected answer, the following sections advice on how to recover from the unexpected situation.</t>
 
 				<section title="Procedures for All Implementations">
 					<t>When receiving an answer within an existing session for a subsequent offer as specified in <xref target="sec-exist-comp" />, an agent MUST verify ICE support as specified in <xref target="sec-overify" />.</t>
