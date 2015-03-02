@@ -9,7 +9,7 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 
-<rfc ipr="pre5378Trust200902" docName="draft-ietf-mmusic-ice-sip-sdp-04" category="std">
+<rfc ipr="pre5378Trust200902" docName="draft-ietf-mmusic-ice-sip-sdp-05" category="std">
 	<front>
 		<title abbrev="ICE SIP/SDP Usage">Using Interactive Connectivity Establishment (ICE) with Session&nbsp;Description Protocol (SDP) offer/answer and Session Initiation Protocol (SIP)</title>
 
@@ -34,7 +34,7 @@
 			</address>
 		</author>
 
-		<date day="27" month="October" year="2014" />
+		<date day="2" month="March" year="2015" />
 
 		<area>RAI</area>
 
