@@ -34,7 +34,7 @@
 			</address>
 		</author>
 
-		<date day="2" month="March" year="2015" />
+		<date day="9" month="March" year="2015" />
 
 		<area>RAI</area>
 
@@ -709,7 +709,7 @@ ice-option-tag        = 1*ice-char]]>
 
 			<section anchor="sec-answer-subsequent" title="Receiving the Answer for a Subsequent Offer">
 				<t>
-					Some deployments of ICE include e.g. SDP-Modifying Signaling-only <xref target="RFC7092">B2BUAs</xref> that modify the SDP body during the subsequent offer/answer exchange.
+					Some deployments of ICE include e.g. SDP-Modifying Signaling-only <xref target="RFC7092">Back-to-Back User Agents (B2BUAs)</xref> that modify the SDP body during the subsequent offer/answer exchange.
 					With the B2BUA being ICE-unaware a subsequent answer might be manipulated and might not include ICE candidates although the initial answer did.
 				</t>
 
@@ -1352,7 +1352,7 @@ ice-option-tag        = 1*ice-char]]>
 						<organization />
 					</author>
 
-					<date month='July' day='4' year='2014' />
+					<date month='March' day='9' year='2015' />
 
 					<abstract>
 						<t>
@@ -1364,9 +1364,9 @@ ice-option-tag        = 1*ice-char]]>
 					</abstract>
 				</front>
 
-				<seriesInfo name='Internet-Draft' value='draft-ietf-mmusic-rfc5245bis-02' />
+				<seriesInfo name='Internet-Draft' value='draft-ietf-mmusic-rfc5245bis-04' />
 
-				<format type='TXT' target='http://www.ietf.org/internet-drafts/draft-ietf-mmusic-rfc5245bis-02.txt' />
+				<format type='TXT' target='http://www.ietf.org/internet-drafts/draft-ietf-mmusic-rfc5245bis-04.txt' />
 			</reference>
 		</references>
 
